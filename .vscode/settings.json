@@ -1,0 +1,8 @@
+{
+	"editor.formatOnSave": true,
+	"editor.insertSpaces": false,
+	"files.encoding": "utf8",
+	"files.insertFinalNewline": true,
+	"files.trimTrailingWhitespace": true,
+	"java.configuration.updateBuildConfiguration": "interactive",
+}

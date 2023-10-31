@@ -1,0 +1,10 @@
+# Mac being annoying
+.DS_Store
+
+# Build related files
+*.class
+*.jar
+target/
+
+# Any log files
+*.log
