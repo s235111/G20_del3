@@ -3,7 +3,7 @@ package game;
 public class Square {
 
 	String nameToken;
-	int moneyValue;
+	int price;
 	boolean chancesquare;
 	boolean start;
 	boolean prison;
@@ -15,10 +15,10 @@ public class Square {
 
 	}
 
-	public Square(String nameToken, int moneyValue, boolean chancesquare, boolean start, boolean prison,
+	public Square(String nameToken, int price, boolean chancesquare, boolean start, boolean prison,
 			boolean visiting, boolean parking, String color) {
 		this.nameToken = nameToken;
-		this.moneyValue = moneyValue;
+		this.price = price;
 		this.chancesquare = chancesquare;
 		this.start = start;
 		this.prison = prison;
@@ -36,11 +36,11 @@ public class Square {
 	}
 
 	public int getMoneyValue() {
-		return this.moneyValue;
+		return this.price;
 	}
 
 	public void setMoneyValue(int newValue) {
-		this.moneyValue = newValue;
+		this.price = newValue;
 	}
 
 	public boolean getExtraTurn() {
