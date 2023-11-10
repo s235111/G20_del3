@@ -1,7 +1,7 @@
 package game;
 
 public class GameBoard {
-	Square[] squares = new Square[] {
+	public Square[] squares = new Square[] {
 			new Square("Start", 0, false, true, false, false, false, ""),
 			new Square("Burgerjoint", 1, false, false, false, false, false, "Brown"),
 			new Square("Pizzaria", 1, false, false, false, false, false, "Brown"),
