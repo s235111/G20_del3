@@ -46,5 +46,4 @@ public class Square {
 	public boolean getExtraTurn() {
 		return this.chancesquare;
 	}
-
 }

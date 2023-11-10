@@ -28,4 +28,12 @@ public class GameBoard {
 			new Square("The beach", 5, false, false, false, false, false, "Blue"),
 
 	};
+
+	public Square getSquare(int index) {
+		return squares[index];
+	}
+
+	public Square[] getArray() {
+		return squares;
+	}
 }
