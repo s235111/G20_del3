@@ -4,16 +4,27 @@ public class Square {
 
 	String nameToken;
 	int moneyValue;
-	boolean extraTurn;
+	boolean chancesquare;
+	boolean start;
+	boolean prison;
+	boolean visiting;
+	boolean parking;
+	String color;
 
 	public Square() {
 
 	}
 
-	public Square(String nameToken, int moneyValue, boolean extraTurn) {
+	public Square(String nameToken, int moneyValue, boolean chancesquare, boolean start, boolean prison,
+			boolean visiting, boolean parking, String color) {
 		this.nameToken = nameToken;
 		this.moneyValue = moneyValue;
-		this.extraTurn = extraTurn;
+		this.chancesquare = chancesquare;
+		this.start = start;
+		this.prison = prison;
+		this.visiting = visiting;
+		this.parking = parking;
+		this.color = color;
 	}
 
 	public String getNameToken() {
@@ -33,12 +44,7 @@ public class Square {
 	}
 
 	public boolean getExtraTurn() {
-		return this.extraTurn;
-	}
-
-	public void setExtraTurn(boolean extraTurn) {
-		this.extraTurn = extraTurn;
-
+		return this.chancesquare;
 	}
 
 }

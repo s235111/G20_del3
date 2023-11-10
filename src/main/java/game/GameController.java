@@ -8,23 +8,6 @@ public class GameController {
 	boolean isPlayerTwo = false;
 	Player currentPlayer;
 
-	Square[] squares = new Square[] {
-			// Two null entries, as we can't get a sum of 0 or 1 with normal dice
-			null,
-			null,
-			new Square("square2", 250, false),
-			new Square("square3", -100, false),
-			new Square("square4", 100, false),
-			new Square("square5", -20, false),
-			new Square("square6", 180, false),
-			new Square("square7", 0, false),
-			new Square("square8", -70, false),
-			new Square("square9", 60, false),
-			new Square("square10", -80, true),
-			new Square("square11", -50, false),
-			new Square("square12", 650, false),
-	};
-
 	public void startGame() {
 		player1.getAccount().setBalance(1000);
 		player2.getAccount().setBalance(1000);
