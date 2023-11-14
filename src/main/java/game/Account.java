@@ -8,6 +8,24 @@ public class Account {
 		this.balance = 0;
 	}
 
+	// Sets start balance acording to number of players
+	public Account(int players) {
+		switch (players) {
+			case 2:
+				this.balance = 20;
+				break;
+			case 3:
+				this.balance = 18;
+				break;
+
+			case 4:
+				this.balance = 16;
+				break;
+			default:
+				break;
+		}
+	}
+
 	public int getBalance() {
 		return this.balance;
 	}
