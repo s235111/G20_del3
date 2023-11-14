@@ -10,6 +10,7 @@ public class Square {
 	boolean visiting;
 	boolean parking;
 	String color;
+	String owner;
 
 	public Square() {
 
@@ -43,7 +44,11 @@ public class Square {
 		this.price = newValue;
 	}
 
-	public boolean getExtraTurn() {
-		return this.chancesquare;
+	public void setOwner(String owner) {
+		this.owner = owner;
+	}
+
+	public String getOwner() {
+		return this.owner;
 	}
 }

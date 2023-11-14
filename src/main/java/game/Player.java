@@ -4,7 +4,6 @@ class Player {
 
 	private String name;
 	private Account account;
-	private Square[] owned;
 
 	// Should this be a seperate method or part of constructor??
 	private char icon;
@@ -13,14 +12,12 @@ class Player {
 	public Player() {
 		this.name = "";
 		this.account = new Account();
-		this.owned = new Square[24];
 	}
 
 	// Constructor with name overload
 	public Player(String givenName) {
 		this.name = givenName;
 		this.account = new Account();
-		this.owned = new Square[24];
 	}
 
 	public String getName() {
@@ -35,17 +32,24 @@ class Player {
 		return this.account;
 	}
 
-	public void addProperty(Square property) {
-		for (int i = 0; i < this.owned.length; i++) {
-			if (this.owned[i] == null) {
-				this.owned[i] = property;
-				break;
-			}
-
-		}
+	public void setIcon(char icon) {
+		this.icon = icon;
 	}
 
-	public Square[] getProperties() {
-		return this.owned;
+	public char getIcon() {
+		return this.icon;
 	}
+	// public void addProperty(Square property) {
+	// for (int i = 0; i < this.owned.length; i++) {
+	// if (this.owned[i] == null) {
+	// this.owned[i] = property;
+	// break;
+	// }
+	//
+	// }
+	// }
+	//
+	// public Square[] getProperties() {
+	// return this.owned;
+	// }
 }
