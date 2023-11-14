@@ -38,8 +38,8 @@ public class GameBoard {
 	}
 
 	public String toString() {
-		String temp;
-		for (var i : squares)     {
+		String temp = "";
+		for (var i : squares) {
 
 			temp += i.nameToken + ", " + i.price + ", " + (i.chancesquare ? "Is a chance Square" : "")
 					+ (i.start ? "Is a start square" : "") + (i.prison ? "Its the prison" : "")

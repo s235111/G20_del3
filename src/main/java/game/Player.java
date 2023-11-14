@@ -6,6 +6,9 @@ class Player {
 	private Account account;
 	private Square[] owned;
 
+	// Should this be a seperate method or part of constructor??
+	private char icon;
+
 	// Constructor
 	public Player() {
 		this.name = "";
