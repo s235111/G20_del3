@@ -4,20 +4,34 @@ class Player {
 
 	private String name;
 	private Account account;
-
+	private int position;
 	// Should this be a seperate method or part of constructor??
-	private char icon;
+	private String piece;
 
 	// Constructor
 	public Player() {
 		this.name = "";
 		this.account = new Account();
+		this.position = 0;
 	}
 
 	// Constructor with name overload
 	public Player(String givenName) {
 		this.name = givenName;
 		this.account = new Account();
+		this.position = 0;
+	}
+
+	public void move(int amount) {
+		this.position += amount;
+	}
+
+	public int getPosition() {
+		return this.position;
+	}
+
+	public void setPosition(int pos) {
+
 	}
 
 	public String getName() {
@@ -32,12 +46,12 @@ class Player {
 		return this.account;
 	}
 
-	public void setIcon(char icon) {
-		this.icon = icon;
+	public void setIcon(String piece) {
+		this.piece = piece;
 	}
 
-	public char getIcon() {
-		return this.icon;
+	public String getIcon() {
+		return this.piece;
 	}
 	// public void addProperty(Square property) {
 	// for (int i = 0; i < this.owned.length; i++) {

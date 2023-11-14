@@ -3,29 +3,25 @@ package game;
 public class Square {
 
 	String nameToken;
-	int price;
-	boolean chancesquare;
-	boolean start;
-	boolean prison;
-	boolean visiting;
-	boolean parking;
-	String color;
-	String owner;
+	int value;
+	int index;
+	String type;
+	String colour;
+	Player owner;
 
 	public Square() {
 
 	}
 
-	public Square(String nameToken, int price, boolean chancesquare, boolean start, boolean prison,
-			boolean visiting, boolean parking, String color) {
+	public Square(String nameToken, int price, String type, String colour) {
 		this.nameToken = nameToken;
-		this.price = price;
-		this.chancesquare = chancesquare;
-		this.start = start;
-		this.prison = prison;
-		this.visiting = visiting;
-		this.parking = parking;
-		this.color = color;
+		this.value = price;
+		this.type = type;
+		this.colour = colour;
+	}
+
+	public String toString() {
+		return this.nameToken + ", " + this.value + ", af typen " + this.type + ", af farven: " + this.colour;
 	}
 
 	public String getNameToken() {
@@ -37,18 +33,22 @@ public class Square {
 	}
 
 	public int getMoneyValue() {
-		return this.price;
+		return this.value;
 	}
 
 	public void setMoneyValue(int newValue) {
-		this.price = newValue;
+		this.value = newValue;
 	}
 
-	public void setOwner(String owner) {
+	public String getType() {
+		return this.type;
+	}
+
+	public void setOwner(Player owner) {
 		this.owner = owner;
 	}
 
-	public String getOwner() {
+	public Player getOwner() {
 		return this.owner;
 	}
 }
