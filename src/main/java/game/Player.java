@@ -4,6 +4,7 @@ class Player {
 
 	private String name;
 	private Account account;
+	private Square[] owned = new Square[24];
 
 	// Constructor
 	public Player() {
@@ -27,6 +28,16 @@ class Player {
 
 	public Account getAccount() {
 		return this.account;
+	}
+
+	public void addProperty(Square property) {
+		for (int i = 0; i < owned.length; i++) {
+			if (owned[i] == null) {
+				owned[i] = property;
+				break;
+			}
+
+		}
 	}
 
 }
