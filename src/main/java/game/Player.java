@@ -1,6 +1,6 @@
 package game;
 
-class Player {
+public class Player {
 
 	private String name;
 	private Account account;
