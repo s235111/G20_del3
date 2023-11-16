@@ -2,46 +2,50 @@ package game;
 
 public class Square {
 
-	String nameToken;
+	String name;
 	int value;
-	int index;
-	String type;
 	String colour;
+	int index;
 	Player owner;
+	String type;
 
 	public Square() {
 
 	}
 
-	public Square(String nameToken, int price, String type, String colour) {
-		this.nameToken = nameToken;
+	public Square(String name, int price, String type, String colour) {
+		this.name = name;
 		this.value = price;
 		this.type = type;
 		this.colour = colour;
 	}
 
 	public String toString() {
-		return this.nameToken + ", " + this.value + ", af typen " + this.type + ", af farven: " + this.colour;
+		return this.name + ", " + this.value + ", af typen " + this.type + ", af farven: " + this.colour;
 	}
 
-	public String getNameToken() {
-		return this.nameToken;
+	public String getName() {
+		return this.name;
 	}
 
-	public void setNameToken(String newName) {
-		this.nameToken = newName;
+	public void setName(String newName) {
+		this.name = newName;
 	}
 
-	public int getMoneyValue() {
+	public int getValue() {
 		return this.value;
 	}
 
-	public void setMoneyValue(int newValue) {
+	public void setValue(int newValue) {
 		this.value = newValue;
 	}
 
 	public String getType() {
 		return this.type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	public void setOwner(Player owner) {
@@ -50,5 +54,21 @@ public class Square {
 
 	public Player getOwner() {
 		return this.owner;
+	}
+
+	public int getIndex() {
+		return this.index;
+	}
+
+	public void setIndex(int index) {
+		this.index = index;
+	}
+
+	public String getColour() {
+		return this.colour;
+	}
+
+	public void setColour(String colour) {
+		this.colour = colour;
 	}
 }

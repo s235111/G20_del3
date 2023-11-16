@@ -11,11 +11,15 @@ public class Die {
 	}
 
 	public void roll() {
-		value = random.nextInt(6) + 1;
+		this.value = random.nextInt(6) + 1;
 	}
 
 	public int getValue() {
-		return value;
+		return this.value;
+	}
+
+	public void setValue(int value) {
+		this.value = value;
 	}
 
 }

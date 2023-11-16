@@ -57,4 +57,16 @@ public class GameBoard {
 		}
 		return owned;
 	}
+
+	public void showPlayerPath(Player player, int index) {
+		String list = "";
+		for (int i = squares[player.getPosition()].index; i != index; i++) {
+			if (i % 24 == 0) {
+				i = 0;
+			}
+			list += squares[i].toString();
+			list += System.lineSeparator();
+		}
+		System.out.println(list);
+	}
 }

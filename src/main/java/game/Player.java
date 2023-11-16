@@ -2,7 +2,7 @@ package game;
 
 class Player {
 
-	private String name;
+	public boolean inJail;
 	private Account account;
 	private int position;
 	// Should this be a seperate method or part of constructor??
@@ -10,20 +10,21 @@ class Player {
 
 	// Constructor
 	public Player() {
-		this.name = "";
 		this.account = new Account();
 		this.position = 0;
 	}
 
 	// Constructor with name overload
-	public Player(String givenName) {
-		this.name = givenName;
+	public Player(String piece) {
+		this.inJail = false;
 		this.account = new Account();
 		this.position = 0;
+		this.piece = piece;
 	}
 
-	public void move(int amount) {
+	public int move(int amount) {
 		this.position += amount;
+		return this.position;
 	}
 
 	public int getPosition() {
@@ -31,39 +32,18 @@ class Player {
 	}
 
 	public void setPosition(int pos) {
-
-	}
-
-	public String getName() {
-		return this.name;
-	}
-
-	public void setName(String nameToSet) {
-		this.name = nameToSet;
+		this.position = pos;
 	}
 
 	public Account getAccount() {
 		return this.account;
 	}
 
-	public void setIcon(String piece) {
+	public void setPiece(String piece) {
 		this.piece = piece;
 	}
 
-	public String getIcon() {
+	public String getPiece() {
 		return this.piece;
 	}
-	// public void addProperty(Square property) {
-	// for (int i = 0; i < this.owned.length; i++) {
-	// if (this.owned[i] == null) {
-	// this.owned[i] = property;
-	// break;
-	// }
-	//
-	// }
-	// }
-	//
-	// public Square[] getProperties() {
-	// return this.owned;
-	// }
 }
