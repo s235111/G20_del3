@@ -1,6 +1,6 @@
 package game;
 
-class Player {
+public class Player {
 
 	public boolean inJail;
 	private Account account;
