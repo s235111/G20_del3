@@ -1,6 +1,7 @@
 package game.chancecards;
 
 import game.Player;
+import game.GameController;
 
 public class MoveBy1OrPickAnotherCard implements ChanceCard {
 	@Override
