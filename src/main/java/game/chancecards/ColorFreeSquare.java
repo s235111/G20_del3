@@ -1,7 +1,7 @@
 package game.chancecards;
 
 import game.Player;
-import game.GameBoard;
+import game.GameController;
 import game.Square;
 
 public class ColorFreeSquare implements ChanceCard {
@@ -29,7 +29,7 @@ public class ColorFreeSquare implements ChanceCard {
 		Square square;
 		while (true) {
 			i = (i + 1) % 24;
-			square = GameBoard.getSquare(i);
+			square = GameController.getGameBoard().getSquare(i);
 			if (square.getColour().equals(color1) || square.getColour().equals(color2)) {
 				break;
 			}
