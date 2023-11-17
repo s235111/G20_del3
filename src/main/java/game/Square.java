@@ -2,16 +2,12 @@ package game;
 
 public class Square {
 
-	String name;
-	int value;
-	String colour;
-	int index;
-	Player owner;
-	String type;
-
-	public Square() {
-
-	}
+	private String name;
+	private int value;
+	private String colour;
+	private int index;
+	private Player owner;
+	private String type;
 
 	public Square(String name, int price, String type, String colour) {
 		this.name = name;

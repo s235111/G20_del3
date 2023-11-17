@@ -58,4 +58,12 @@ public class Player {
 	public void setInJail(boolean inJail) {
 		this.inJail = inJail;
 	}
+
+	public boolean getHasGetOutOfJailFreeCard() {
+		return this.HasGetOutOfJailFreeCard;
+	}
+
+	public void setHasGetOutOfJailFreeCard(boolean HasGetOutOfJailFreeCard) {
+		this.HasGetOutOfJailFreeCard = HasGetOutOfJailFreeCard;
+	}
 }
