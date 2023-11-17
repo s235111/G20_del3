@@ -3,15 +3,15 @@ package game;
 public class Player {
 
 	private boolean inJail;
-	private Account account;
 	private int position;
 	// Should this be a seperate method or part of constructor??
 	private String piece;
 	private boolean HasGetOutOfJailFreeCard;
+	private int balance;
 
 	// Constructor
 	public Player() {
-		this.account = new Account();
+
 		this.position = 0;
 		this.inJail = false;
 		this.HasGetOutOfJailFreeCard = false;
@@ -20,7 +20,6 @@ public class Player {
 	// Constructor with name overload
 	public Player(String piece) {
 		this.inJail = false;
-		this.account = new Account();
 		this.position = 0;
 		this.piece = piece;
 		this.HasGetOutOfJailFreeCard = false;
@@ -37,10 +36,6 @@ public class Player {
 
 	public void setPosition(int pos) {
 		this.position = pos;
-	}
-
-	public Account getAccount() {
-		return this.account;
 	}
 
 	public void setPiece(String piece) {
@@ -65,5 +60,13 @@ public class Player {
 
 	public void setHasGetOutOfJailFreeCard(boolean HasGetOutOfJailFreeCard) {
 		this.HasGetOutOfJailFreeCard = HasGetOutOfJailFreeCard;
+	}
+
+	public int getBalance() {
+		return this.balance;
+	}
+
+	public void setBalance(int amount) {
+		this.balance = amount;
 	}
 }
