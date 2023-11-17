@@ -46,27 +46,19 @@ public class GameBoard {
 		return list;
 	}
 
-	public Square[] getSquaresOwnedBy(Player player) {
-		Square[] owned = new Square[24];
-		int j = 0;
+	public void showOwnedBy(Player player) {
 		for (Square i : squares) {
-			if (i.owner.equals(player)) {
-				owned[j] = i;
+			if (i.owner == (player)) {
+				System.out.println(i.toString());
 			}
-			j++;
 		}
-		return owned;
 	}
 
 	public void showPlayerPath(Player player, int index) {
 		String list = "";
-		for (int i = squares[player.getPosition()].index; i != index; i++) {
-			if (i % 24 == 0) {
-				i = 0;
-			}
-			list += squares[i].toString();
-			list += System.lineSeparator();
+		for (int i = squares[player.getPosition()].index; i != index; i = (i + 1) % 24) {
+			list = squares[i].toString();
+			System.out.println(list);
 		}
-		System.out.println(list);
 	}
 }
