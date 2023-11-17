@@ -1,6 +1,7 @@
 package game.chancecards;
 
 import game.Player;
+import game.GameController;
 
 public class MoveBy1OrPickAnotherCard implements ChanceCard {
 	@Override
@@ -23,7 +24,7 @@ public class MoveBy1OrPickAnotherCard implements ChanceCard {
 		if (input == "y") {
 			player.move(1);
 		} else {
-			// TODO: take another card
+			GameController.drawChanceCard(player);
 		}
 	}
 }
