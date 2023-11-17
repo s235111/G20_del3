@@ -12,6 +12,7 @@ class Player {
 	public Player() {
 		this.account = new Account();
 		this.position = 0;
+		this.inJail = false;
 	}
 
 	// Constructor with name overload
