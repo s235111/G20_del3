@@ -23,7 +23,7 @@ public class MoveBy1OrPickAnotherCard implements ChanceCard {
 		if (input == "y") {
 			player.move(1);
 		} else {
-			// TODO: take another card
+			GameController.drawChanceCard(player);
 		}
 	}
 }
