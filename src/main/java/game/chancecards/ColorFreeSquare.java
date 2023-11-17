@@ -2,6 +2,7 @@ package game.chancecards;
 
 import game.Player;
 import game.GameBoard;
+import game.Square;
 
 public class ColorFreeSquare implements ChanceCard {
 	private String color1;
@@ -24,6 +25,24 @@ public class ColorFreeSquare implements ChanceCard {
 
 	@Override
 	public void perform(Player player) {
-		// feosjf
+		int i = player.getPosition();
+		Square square;
+		while (true) {
+			i = (i + 1) % 24;
+			square = GameBoard.getSquare(i);
+			if (square.getColour().equals(color1) || square.getColour().equals(color2)) {
+				break;
+			}
+			// Make sure we don't have an infinite loop if the colour(s) aren't on the board
+			if (i == player.getPosition()) {
+				throw new Exception("Couldn't find given colour(s) on the board");
+			}
+		}
+		player.setPosition(i);
+		if (square.getOwner() == null) {
+			square.setOwner(player);
+		} else {
+			Bank.payRent(player, square);
+		}
 	}
 }
