@@ -25,7 +25,7 @@ public class Bank {
 
     public static void payRent(Player player, Square square){
         var owner = square.getOwner();
-        var rent = square.getRent();
+        var rent = square.getValue();
 
         owner.getAccount().deposit(rent);
         player.getBalance().withdraw(rent);
