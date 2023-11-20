@@ -2,39 +2,46 @@ package game;
 
 public class Bank {
 	public static void deposit(Player player, int money) {
-		player.getAccount().deposit(money);
+		player.setBalance(player.getBalance() + money);;
 	}
 
-	public boolean withdraw(Player player, int money) {
-		if (player.getAccount().withdraw(money)) {
-			player.getBalance().withdraw(money);
-			return true;
-		} else
-			return false;
+	public static boolean withdraw(Player player, int money) {
 
+		if (player.getBalance() - money >= 0){
+			player.setBalance(player.getBalance() - money);
+			return true;
+		}else {
+			return false;
+		}
 	}
 
 	public static void payPlayer(Player player1, Player player2, int money){
-		player1.getAccount().withdraw(money);
-		player2.getAccount().deposit(money);
+
+		if (Bank.withdraw(player1, money)){
+			Bank.deposit(player2, money);
+		}
+
 	}
 
 	public static void payGo(Player player){
-		player.getAccount().deposit(2);
+		Bank.deposit(player, 2);
 	}
 
     public static void payRent(Player player, Square square){
         var owner = square.getOwner();
         var rent = square.getValue();
 
-        owner.getAccount().deposit(rent);
-        player.getBalance().withdraw(rent);
+		if (owner != null){
+			if (Bank.withdraw(player, rent)){
+				Bank.deposit(owner, rent);
+			}
+		}
     }
 
     public static void transferSquare(Player player, Square square){
         square.setOwner(player);
     }
 
-    
-	
+
+
 }

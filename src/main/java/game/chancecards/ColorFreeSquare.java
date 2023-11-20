@@ -3,8 +3,9 @@ package game.chancecards;
 import game.Player;
 import game.GameController;
 import game.Square;
+import game.Bank;
 
-public class ColorFreeSquare implements ChanceCard {
+public class ColorFreeSquare implements ChanceCard{
 	private String color1;
 	private String color2;
 
@@ -24,7 +25,7 @@ public class ColorFreeSquare implements ChanceCard {
 	}
 
 	@Override
-	public void perform(Player player) {
+	public void perform(Player player) throws IllegalArgumentException{
 		int i = player.getPosition();
 		Square square;
 		while (true) {
@@ -35,7 +36,7 @@ public class ColorFreeSquare implements ChanceCard {
 			}
 			// Make sure we don't have an infinite loop if the colour(s) aren't on the board
 			if (i == player.getPosition()) {
-				throw new Exception("Couldn't find given colour(s) on the board");
+				throw new IllegalArgumentException("Couldn't find given colour(s) on the board");
 			}
 		}
 		player.setPosition(i);
