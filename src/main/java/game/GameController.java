@@ -1,87 +1,41 @@
 package game;
 
+import java.util.Arrays;
+
 public class GameController {
-	Player player1 = new Player();
-	Player player2 = new Player();
 
-	DiceCup diceCup = new DiceCup();
-	boolean isPlayerTwo = false;
-	Player currentPlayer;
+	private static Player[] players;
 
-	public void startGame() {
-		player1.getAccount().setBalance(1000);
-		player2.getAccount().setBalance(1000);
+
+	public static void setupGame(){
+
+		return;
 	}
 
-	public void playNextTurn() {
-		currentPlayer = isPlayerTwo ? player2 : player1;
-
-		playTurn(currentPlayer);
-
-		if (checkWin(currentPlayer)) {
-			return;
-		}
-
-		if (!getSquare().getExtraTurn()) {
-			isPlayerTwo = !isPlayerTwo;
-		}
+	public static void playTurn(Player player){
+		return;
 	}
 
-	private void playTurn(Player player) {
-
-		diceCup.rollDice();
-		var sum = diceCup.getSum();
-		var account = player.getAccount();
-		var moneyValue = squares[sum].moneyValue;
-		if (moneyValue > 0) {
-			account.deposit(moneyValue);
-		} else if (moneyValue < 0) {
-			// moneyValue is negative, but withdraw expects
-			// a positive number, so flip the sign first
-			account.withdraw(-moneyValue);
-		}
+	public static void endGameEvaluation(){
 
 	}
 
-	private boolean checkWin(Player player) {
-		// The player wins if they have a balance of at least 3000
-		return player.getAccount().getBalance() >= 3000;
+	public static Player[] getPlayers(){
+		return players;
 	}
 
-	public void setPlayerNames(String player1Name, String player2Name) {
-		player1.setName(player1Name);
-		player2.setName(player2Name);
+	public static void addPlayer(Player newPlayer){
+			players = Arrays.copyOf(players, players.length + 1);
+			players[players.length - 1] = newPlayer;
 	}
 
-	public int getPlayer1Balance() {
-		return player1.getAccount().getBalance();
-	}
 
-	public int getPlayer2Balance() {
-		return player2.getAccount().getBalance();
-	}
+	public static void main(String[] args){
 
-	public boolean isPlayerTwo() {
-		return isPlayerTwo;
-	}
+		System.out.println(players);
+		GameController.addPlayer(new Player("Boat"));
+		System.out.println(players);
 
-	public boolean hasCurrentPlayerWon() {
-		return checkWin(currentPlayer);
-	}
 
-	public Square getSquare() {
-		return squares[diceCup.getSum()];
-	}
-
-	public int getSum() {
-		return diceCup.getSum();
-	}
-
-	public int getDie1Value() {
-		return diceCup.getDie1();
-	}
-
-	public int getDie2Value() {
-		return diceCup.getDie2();
 	}
 }

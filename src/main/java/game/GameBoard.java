@@ -48,7 +48,7 @@ public class GameBoard {
 
 	public void showOwnedBy(Player player) {
 		for (Square i : squares) {
-			if (i.owner == (player)) {
+			if (i.getOwner() == (player)) {
 				System.out.println(i.toString());
 			}
 		}
@@ -56,7 +56,7 @@ public class GameBoard {
 
 	public void showPlayerPath(Player player, int index) {
 		String list = "";
-		for (int i = squares[player.getPosition()].index; i != index; i = (i + 1) % 24) {
+		for (int i = squares[player.getPosition()].getIndex(); i != index; i = (i + 1) % 24) {
 			list = squares[i].toString();
 			System.out.println(list);
 		}
