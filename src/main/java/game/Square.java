@@ -17,7 +17,11 @@ public class Square {
 	}
 
 	public String toString() {
-		return this.name + ", " + this.value + ", af typen " + this.type + ", af farven: " + this.colour;
+		if (this.colour != null){
+			return this.name + ", " + this.value + ", of type " + this.type + ", with the colour of: " + this.colour;
+		} else {
+			return this.name + ", " + this.value + ", of type " + this.type;
+		}
 	}
 
 	public String getName() {

@@ -26,7 +26,7 @@ public class Player {
 	}
 
 	public int move(int amount) {
-		this.position += amount;
+		this.position = (this.position + amount) % GameController.getGameBoard().getArray().length;
 		return this.position;
 	}
 
