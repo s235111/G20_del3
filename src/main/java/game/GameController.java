@@ -45,6 +45,7 @@ public class GameController {
 
 	public static void main(String[] args){
 
+		GameController.players = new Player[] {new Player("boat")};
 		System.out.println(players);
 		GameController.addPlayer(new Player("Boat"));
 		System.out.println(players);
