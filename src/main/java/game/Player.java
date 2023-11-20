@@ -69,4 +69,12 @@ public class Player {
 	public void setBalance(int amount) {
 		this.balance = amount;
 	}
+
+	public String toString(){
+		if (this.piece != null){
+			return this.piece;
+		} else {
+			return "";
+		}
+	}
 }

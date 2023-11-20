@@ -43,11 +43,22 @@ public class GameController {
 		return;
 	}
 
+
+
+	public static String playersToString(){
+		String temp = "";
+		for(Player i: players){
+			temp = temp + i.toString();
+		}
+		return temp;
+	}
+
+
 	public static void main(String[] args){
 
 		GameController.players = new Player[] {new Player("boat")};
-		System.out.println(players);
+		System.out.println(playersToString());
 		GameController.addPlayer(new Player("Boat"));
-		System.out.println(players);
+		System.out.println(playersToString());
 	}
 }
