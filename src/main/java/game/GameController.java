@@ -2,6 +2,7 @@ package game;
 
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.Comparator;
 
 public class GameController {
 
@@ -45,10 +46,19 @@ public class GameController {
 		}
 		System.out.println("The game will now start with the following players:");
 		System.out.println(playersToString());
+		Bank.payGameStart(players);
 
 	}
 
 	public static void playTurn(Player player){
+
+		if (player.getInJail() == true){
+			if (player.getHasGetOutOfJailFreeCard() == true){
+				player.setHasGetOutOfJailFreeCard(false);
+			} else {
+				Bank.withdraw(player, 2);
+			}
+		}
 		System.out.println("Your turn " + player.toString() + "\n");
 		Scanner sc = new Scanner(System.in);
 		System.out.println("You are at: " + player.getPosition());
@@ -84,8 +94,15 @@ public class GameController {
 				}
 
 				if (playerSquare.getOwner() == null){
-					System.out.println("You landed on " + playerSquare.getName() + " and buy it for $" + playerSquare.getValue());
-					playerSquare.setOwner(player);
+
+					if(player.getBalance() >= playerSquare.getValue()){
+						System.out.println("You landed on " + playerSquare.getName() + " and buy it for $" + playerSquare.getValue());
+						Bank.withdraw(player, playerSquare.getValue());
+						playerSquare.setOwner(player);
+
+					} else{
+						System.out.println("You do not have enough money to buy this square, nothing happens");
+					}
 				}
 
 				if (playerSquare.getOwner() != null && playerSquare.getOwner() != player){
@@ -94,21 +111,26 @@ public class GameController {
 					System.out.println("You now have $" + player.getBalance());
 				}
 				break;
+
 			case "chance":
 				System.out.println("You landed on a Chance square, and get to draw a chance card");
 				drawChanceCard(player);
 				break;
+
 			case "parking":
 				System.out.println("you arrived at free parking, nothing more happens");
 				break;
+
 			case "prison":
 				System.out.println("You landed on go to prison, and are taken to jail");
 				player.setPosition(17);
 				player.setInJail(true);
 				break;
+
 			case "visit":
 				System.out.println("You are visiting jail, welcome!");
 				break;
+
 			default:
 				System.out.println("Something went wrong, how didi this happen!!!!");
 			}
@@ -117,9 +139,49 @@ public class GameController {
 
 
 	public static void endGameEvaluation(){
-		return;
-	}
+		//Sort the players by balance, least to most
+		Arrays.sort(players, new Comparator<Player>() {
+            @Override
+            public int compare(Player p1, Player p2) {
+                return Integer.compare(p1.getBalance(), p2.getBalance());
+            }
+        });
 
+		//Print the scores
+		System.out.println("Final Score:");
+		for (Player player : players) {
+            System.out.println(player.getPiece() + " - Balance: " + player.getBalance());
+        }
+
+		//find the winner
+		if (players.length == 2){
+			System.out.println("The winner is" + players[players.length-1]);
+		}
+
+		if (players.length == 3){
+			if (players[players.length-1].getBalance() == players[players.length-2].getBalance()){
+				System.out.println("We have a tie!!!");
+			} else{
+				System.out.println("The winner is" + players[players.length-1]);
+			}
+		}
+		if (players.length == 4){
+			if (players[players.length-1].getBalance() == players[players.length-2].getBalance()){
+				if (players[players.length-1].getBalance() == players[players.length-3].getBalance()){
+					System.out.println("We have a three way tie!!!");
+				} else {
+					System.out.println("We have a tie!!!");
+				}
+			} else{
+				System.out.println("The winner is" + players[players.length-1]);
+			}
+		}
+
+
+
+
+
+	}
 	public static Player[] getPlayers(){
 		return players;
 	}
@@ -154,12 +216,15 @@ public class GameController {
 
 	public static void main(String[] args){
 		setupGame();
-		int count = 100;
+		int count = 10;
 		while (count > 0){
 			for(Player player: players){
 				playTurn(player);
 			}
 			count--;
 		}
+		System.out.println(playersToString());
+		endGameEvaluation();
+		System.out.println(playersToString());
 	}
 }
