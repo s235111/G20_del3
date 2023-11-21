@@ -26,7 +26,7 @@ public class Player {
 	}
 
 	public int move(int amount) {
-		this.position += amount;
+		this.position = (this.position + amount) % GameController.getGameBoard().getArray().length;
 		return this.position;
 	}
 
@@ -68,5 +68,13 @@ public class Player {
 
 	public void setBalance(int amount) {
 		this.balance = amount;
+	}
+
+	public String toString(){
+		if (this.piece != null){
+			return this.piece;
+		} else {
+			return "";
+		}
 	}
 }

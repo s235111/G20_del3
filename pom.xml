@@ -43,7 +43,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>ui.UserInterface</mainClass>
+							<mainClass>game.GameController</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
