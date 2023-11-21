@@ -24,7 +24,6 @@ public class MoveUpTo5Squares implements ChanceCard {
 				break;
 			System.out.println("The number has to be in the range 1-5, try again");
 		}
-		scanner.close();
 		player.move(input);
 	}
 }

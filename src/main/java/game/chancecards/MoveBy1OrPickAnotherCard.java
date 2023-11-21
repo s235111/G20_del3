@@ -20,7 +20,6 @@ public class MoveBy1OrPickAnotherCard implements ChanceCard {
 				break;
 			System.out.println("That wasn't a valid input, try again");
 		}
-		scanner.close();
 		if (input == "y") {
 			player.move(1);
 		} else {
