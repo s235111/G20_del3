@@ -47,7 +47,7 @@ public class ChanceCardDeck {
 		if (cards.size() == 0) {
 			reshuffleDiscardPile();
 		}
-		ChanceCard card = cards.removeFirst();
+		ChanceCard card = cards.remove();
 		discardPile.add(card);
 		return card;
 	}
