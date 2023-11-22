@@ -42,4 +42,13 @@ public class ChanceCardDeck {
 			cards.add(discardPile.remove(index));
 		}
 	}
+
+	public ChanceCard pullCard() {
+		if (cards.size() == 0) {
+			reshuffleDiscardPile();
+		}
+		ChanceCard card = cards.removeFirst();
+		discardPile.add(card);
+		return card;
+	}
 }
