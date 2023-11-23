@@ -27,7 +27,7 @@ public class Player {
 
 	public int move(int amount) {
 		int boardSize = GameController.getGameBoard().getArray().length;
-		if (this.position + amount > boardSize){
+		if ((this.position + amount) >= boardSize){
 			System.out.println("You passed go and get $2");
 			Bank.payGo(this);
 		}

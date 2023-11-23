@@ -2,7 +2,10 @@ package game;
 
 import java.util.Arrays;
 import java.util.Scanner;
+
 import java.util.Comparator;
+
+import game.chancecards.*;
 
 public class GameController {
 
@@ -15,6 +18,8 @@ public class GameController {
 	private static boolean hasEnded = false;
 
 	private static String[] availablePlayers = new String[]{"Boat","Cat","Car","Dog"};
+
+	private static ChanceCardDeck deck = new ChanceCardDeck();
 
 
 
@@ -132,7 +137,7 @@ public class GameController {
 
 			case "chance":
 				System.out.println("You landed on a Chance square, and get to draw a chance card");
-				drawChanceCard(player);
+				//drawChanceCard(player);
 				break;
 
 			case "parking":
@@ -141,7 +146,7 @@ public class GameController {
 
 			case "prison":
 				System.out.println("You landed on go to prison, and are taken to jail");
-				player.setPosition(17);
+				player.setPosition(6);
 				player.setInJail(true);
 				break;
 
@@ -220,7 +225,9 @@ public class GameController {
 	}
 
 	public static void drawChanceCard(Player player){
-		return;
+		var card = deck.pullCard();
+		System.out.println(card.getDescription());
+		card.perform(player);
 	}
 
 	public static String playersToString(){
@@ -283,6 +290,7 @@ public class GameController {
 	}
 
 	public static void main(String[] args){
+		System.out.println("Wakydoodle");
 		setupGame();
 		while (hasEnded == false){
 			for(Player player: players){
