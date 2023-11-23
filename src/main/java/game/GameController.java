@@ -77,6 +77,7 @@ public class GameController {
 
 	public static void playTurn(Player player){
 
+		System.out.println("\n Your turn " + player.toString() + "\n");
 		if (player.getInJail() == true){
 			if (player.getHasGetOutOfJailFreeCard() == true){
 				System.out.println("You used a get out of jail free card to get out of jail");
@@ -87,7 +88,6 @@ public class GameController {
 			}
 		}
 
-		System.out.println("Your turn " + player.toString() + "\n");
 		System.out.println("you have a balance of: " + player.getBalance());
 		System.out.println("You are at: " + player.getPosition());
 		Scanner sc = new Scanner(System.in);
@@ -137,7 +137,7 @@ public class GameController {
 
 			case "chance":
 				System.out.println("You landed on a Chance square, and get to draw a chance card");
-				//drawChanceCard(player);
+				drawChanceCard(player);
 				break;
 
 			case "parking":
@@ -183,9 +183,15 @@ public class GameController {
 			System.out.println("The winner is: " + players[players.length-1]);
 		}
 
+		//Excuse the ugliness of the ties, made in a crunch
 		if (players.length == 3){
 			if (players[players.length-1].getBalance() == players[players.length-2].getBalance()){
 				System.out.println("We have a tie!!!");
+				if(Bank.getPortfolio(players[players.length-1]) > Bank.getPortfolio(players[players.length-1])){
+					System.out.println("The ultimate winner based on portfolio is: " + players[players.length-1].toString());
+				} else{
+					System.out.println("The ultimate winner based on portfolio is: " + players[players.length-2].toString());
+				}
 			} else{
 				System.out.println("The winner is: " + players[players.length-1]);
 			}
@@ -194,8 +200,22 @@ public class GameController {
 			if (players[players.length-1].getBalance() == players[players.length-2].getBalance()){
 				if (players[players.length-1].getBalance() == players[players.length-3].getBalance()){
 					System.out.println("We have a three way tie!!!");
+
+					if(Bank.getPortfolio(players[players.length-1]) > Bank.getPortfolio(players[players.length-1])
+							&& Bank.getPortfolio(players[players.length-1]) > Bank.getPortfolio(players[players.length-3])){
+						System.out.println("The ultimate winner based on portfolio is: " + players[players.length-1].toString());
+					} else if (Bank.getPortfolio(players[players.length-2]) > Bank.getPortfolio(players[players.length-3])){
+						System.out.println("The ultimate winner based on portfolio is: " + players[players.length-2].toString());
+					} else{
+						System.out.println("The ultimate winner based on portfolio is: " + players[players.length-3].toString());
+					}
 				} else {
 					System.out.println("We have a tie!!!");
+					if(Bank.getPortfolio(players[players.length-1]) > Bank.getPortfolio(players[players.length-1])){
+						System.out.println("The ultimate winner based on portfolio is: " + players[players.length-1].toString());
+					} else{
+						System.out.println("The ultimate winner based on portfolio is: " + players[players.length-2].toString());
+					}
 				}
 			} else{
 				System.out.println("The winner is: " + players[players.length-1]);

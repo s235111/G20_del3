@@ -125,6 +125,17 @@ public class Bank {
 
 	}
 
+	public static int getPortfolio(Player player){
+		int totalValue = 0;
+		Square[] squares = GameController.getGameBoard().getOwnedBy(player);
+		for(Square square: squares){
+			totalValue += square.getValue();
+		}
+		return totalValue;
+
+
+	}
+
 
 
 
