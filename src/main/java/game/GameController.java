@@ -14,20 +14,60 @@ public class GameController {
 
 	private static boolean hasEnded = false;
 
+	private static String[] availablePlayers = new String[]{"Boat","Cat","Car","Dog"};
+
+	private static String[] getAvailablePlayers(){
+		return availablePlayers;
+	}
+
+
+	private static boolean pieceIsAvailable(String piece){
+		for (String p: availablePlayers){
+			if(p.equals(piece)){
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private static String availablePlayersString(){
+		String temp = "";
+		for (String s: getAvailablePlayers()){
+			temp = temp + " " + s;
+		}
+		return temp;
+	}
+
 
 	public static void setupGame(){
 
 		System.out.println("Welcome to Monopoly Junior!!!");
-		System.out.println("Let us get started, please input the fist player piece");
-		Scanner sc = new Scanner(System.in);
-		String input = sc.nextLine();
-		addPlayer(new Player(input));
-		System.out.println("Great!! Now we need another player, what piece are they using?");
-		input = sc.nextLine();
-		addPlayer(new Player(input));
+		System.out.println("You can play with some or all of the follwoing 4 pieces: Boat, Cat, Car, Dog");
 
 		boolean allPlayersAdded = false;
+		Scanner sc = new Scanner(System.in);
+		String input;
+
 		while (allPlayersAdded == false){
+			if(players.length == 0){
+				System.out.println("Please choose the first player you have the option to use any aforementioned piece");
+				input = sc.nextLine();
+				if (pieceIsAvailable(input)){
+					addPlayer(new Player(input));
+				} else{
+					continue;
+				}
+			}
+			if(players.length == 1){
+				System.out.println("Please choose the second player you have the option to use" + availablePlayersString());
+				input = sc.nextLine();
+				if (pieceIsAvailable(input)){
+					addPlayer(new Player(input));
+				} else{
+					continue;
+				}
+			}
+
 			System.out.println("Great, we now have the following players:");
 			System.out.println(playersToString());
 			System.out.println("If you wish to play type play, otherwise add another player piece");
@@ -36,19 +76,22 @@ public class GameController {
 				allPlayersAdded = true;
 				break;
 			}
-			if (input != ""){
+			if (pieceIsAvailable(input)){
 				addPlayer(new Player(input));
+			} else{
+				System.out.println("Please input a valid game piece, remeber it is case sensitive");
 			}
+
+
 			if(players.length == 4){
 				allPlayersAdded = true;
 				break;
 			}
-		System.out.println(input);
-
 		}
 		System.out.println("The game will now start with the following players:");
 		System.out.println(playersToString());
 		Bank.payGameStart(players);
+
 
 	}
 
@@ -77,7 +120,6 @@ public class GameController {
 		input = sc.nextLine();
 
 		player.move(die.getValue());
-
 		handleSquare(player);
 
 	}
@@ -203,6 +245,8 @@ public class GameController {
 	public static void addPlayer(Player newPlayer){
 		players = Arrays.copyOf(players, players.length + 1);
 		players[players.length - 1] = newPlayer;
+		//Note I know this is bad oop design...
+		availablePlayers = removeElement(availablePlayers, newPlayer.getPiece());
 	}
 
 	public static GameBoard getGameBoard(){
@@ -227,6 +271,28 @@ public class GameController {
 		return temp;
 	}
 
+
+	private static String[] removeElement(String[] original, String elementToRemove) {
+        int numberOfElements = original.length;
+        int count = 0;
+
+        for (String item : original) {
+            if (item.equals(elementToRemove)) {
+                count++;
+            }
+        }
+
+        String[] newArray = new String[numberOfElements - count];
+        int newIndex = 0;
+
+        for (String item : original) {
+            if (!item.equals(elementToRemove)) {
+                newArray[newIndex++] = item;
+            }
+        }
+
+        return newArray;
+    }
 
 	public static void main(String[] args){
 
