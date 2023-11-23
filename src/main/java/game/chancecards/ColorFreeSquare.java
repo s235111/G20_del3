@@ -31,7 +31,8 @@ public class ColorFreeSquare implements ChanceCard{
 		while (true) {
 			i = (i + 1) % 24;
 			square = GameController.getGameBoard().getSquare(i);
-			if (square.getColour().equals(color1) || square.getColour().equals(color2)) {
+			String colour = square.getColour();
+			if (colour != null && (colour.equals(color1) || colour.equals(color2))) {
 				break;
 			}
 			// Make sure we don't have an infinite loop if the colour(s) aren't on the board
