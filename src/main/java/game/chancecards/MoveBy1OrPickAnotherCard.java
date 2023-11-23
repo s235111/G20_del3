@@ -16,11 +16,11 @@ public class MoveBy1OrPickAnotherCard implements ChanceCard {
 		while (true) {
 			System.out.print("[Y] Move forward, [N] Take another: ");
 			input = scanner.nextLine().toLowerCase();
-			if (input == "y" || input == "n")
+			if (input.equals("y") || input.equals("n"))
 				break;
 			System.out.println("That wasn't a valid input, try again");
 		}
-		if (input == "y") {
+		if (input.equals("y")) {
 			player.move(1);
 		} else {
 			GameController.drawChanceCard(player);
