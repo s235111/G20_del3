@@ -1,5 +1,7 @@
 package game;
 
+import java.util.Arrays;
+
 public class GameBoard {
 	public Square[] squares = new Square[] {
 			new Square("Start", 0, "start", null),
@@ -52,6 +54,20 @@ public class GameBoard {
 				System.out.println(i.toString());
 			}
 		}
+	}
+
+	public Square[] getOwnedBy(Player player){
+		Square[] tempSquare = new Square[] {};
+		for (Square i : squares) {
+			if(i.getOwner() != null){
+				if (i.getOwner().equals(player)) {
+					tempSquare = Arrays.copyOf(tempSquare, tempSquare.length + 1);
+					tempSquare[tempSquare.length - 1] = i;
+				}
+			}
+		}
+		return tempSquare;
+
 	}
 
 	public void showPlayerPath(Player player, int index) {
