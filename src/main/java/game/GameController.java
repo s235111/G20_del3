@@ -16,27 +16,6 @@ public class GameController {
 
 	private static String[] availablePlayers = new String[]{"Boat","Cat","Car","Dog"};
 
-	private static String[] getAvailablePlayers(){
-		return availablePlayers;
-	}
-
-
-	private static boolean pieceIsAvailable(String piece){
-		for (String p: availablePlayers){
-			if(p.equals(piece)){
-				return true;
-			}
-		}
-		return false;
-	}
-
-	private static String availablePlayersString(){
-		String temp = "";
-		for (String s: getAvailablePlayers()){
-			temp = temp + " " + s;
-		}
-		return temp;
-	}
 
 
 	public static void setupGame(){
@@ -66,11 +45,11 @@ public class GameController {
 				} else{
 					continue;
 				}
-			}
+				System.out.println("Great, we now have the following players:");
+				System.out.println(playersToString());
+		}
 
-			System.out.println("Great, we now have the following players:");
-			System.out.println(playersToString());
-			System.out.println("If you wish to play type play, otherwise add another player piece");
+			System.out.println("If you wish to play type play, otherwise add another player piece the remaining pieces are: " + availablePlayersString());
 			input = sc.nextLine();
 			if (input.equals("play")){
 				allPlayersAdded = true;
@@ -81,8 +60,6 @@ public class GameController {
 			} else{
 				System.out.println("Please input a valid game piece, remeber it is case sensitive");
 			}
-
-
 			if(players.length == 4){
 				allPlayersAdded = true;
 				break;
@@ -91,8 +68,6 @@ public class GameController {
 		System.out.println("The game will now start with the following players:");
 		System.out.println(playersToString());
 		Bank.payGameStart(players);
-
-
 	}
 
 	public static void playTurn(Player player){
@@ -107,8 +82,6 @@ public class GameController {
 			}
 		}
 
-
-
 		System.out.println("Your turn " + player.toString() + "\n");
 		System.out.println("you have a balance of: " + player.getBalance());
 		System.out.println("You are at: " + player.getPosition());
@@ -121,7 +94,6 @@ public class GameController {
 
 		player.move(die.getValue());
 		handleSquare(player);
-
 	}
 
 
@@ -131,6 +103,7 @@ public class GameController {
 			case "start":
 				System.out.println("you landed on go");
 				break;
+
 			case "square":
 				if (playerSquare.getOwner() == player){
 					System.out.println("you landed on your own property " + playerSquare.getName());
@@ -151,7 +124,7 @@ public class GameController {
 				if (playerSquare.getOwner() != null && playerSquare.getOwner() != player){
 					System.out.println("You landed in " + playerSquare.getName());
 					Bank.payRent(player, playerSquare);
-					if(GameController.getHasEnded()){
+					if(GameController.getHasEnded() != true){
 						System.out.println("You now have $" + player.getBalance());
 					}
 				}
@@ -224,10 +197,6 @@ public class GameController {
 			}
 		}
 
-
-
-
-
 	}
 
 	public static boolean getHasEnded(){
@@ -242,13 +211,6 @@ public class GameController {
 		return players;
 	}
 
-	public static void addPlayer(Player newPlayer){
-		players = Arrays.copyOf(players, players.length + 1);
-		players[players.length - 1] = newPlayer;
-		//Note I know this is bad oop design...
-		availablePlayers = removeElement(availablePlayers, newPlayer.getPiece());
-	}
-
 	public static GameBoard getGameBoard(){
 		return GameController.gameBoard;
 	}
@@ -261,8 +223,6 @@ public class GameController {
 		return;
 	}
 
-
-
 	public static String playersToString(){
 		String temp = "";
 		for(Player i: players){
@@ -271,6 +231,12 @@ public class GameController {
 		return temp;
 	}
 
+	public static void addPlayer(Player newPlayer){
+		players = Arrays.copyOf(players, players.length + 1);
+		players[players.length - 1] = newPlayer;
+		//Note I know this is bad oop design...
+		availablePlayers = removeElement(availablePlayers, newPlayer.getPiece());
+	}
 
 	private static String[] removeElement(String[] original, String elementToRemove) {
         int numberOfElements = original.length;
@@ -294,8 +260,29 @@ public class GameController {
         return newArray;
     }
 
-	public static void main(String[] args){
+	private static String[] getAvailablePlayers(){
+		return availablePlayers;
+	}
 
+
+	private static boolean pieceIsAvailable(String piece){
+		for (String p: availablePlayers){
+			if(p.equals(piece)){
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private static String availablePlayersString(){
+		String temp = "";
+		for (String s: getAvailablePlayers()){
+			temp = temp + " " + s;
+		}
+		return temp;
+	}
+
+	public static void main(String[] args){
 		setupGame();
 		while (hasEnded == false){
 			for(Player player: players){
