@@ -37,7 +37,9 @@ public class ChanceCardDeck {
 	public void reshuffleDiscardPile() {
 		Random random = new Random();
 		int index;
-		for (int i = discardPile.size() - 1; i >= 0; i--) {
+		// Upper bound for Random.nextInt is exclusive,
+		// so we run the loop with i being one higher than normal
+		for (int i = discardPile.size(); i > 0; i--) {
 			index = random.nextInt(i);
 			cards.add(discardPile.remove(index));
 		}
