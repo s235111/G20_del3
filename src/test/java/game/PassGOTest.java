@@ -12,11 +12,12 @@ public class PassGOTest {
 		player.setBalance(10);
 		assertEquals(10, player.getBalance());
 
-		player.setPosition(GameController.getGameBoard().getArray().length - 2);
+		player.setPosition(GameController.getGameBoard().getArray().length - 1);
 		player.move(1);
+		assertEquals("start", GameController.getGameBoard().getSquare(player.getPosition()).getType(), "Expected square to be go");
 		assertEquals(12, player.getBalance(), "Landing on GO didn't pay out");
 
-		player.setPosition(GameController.getGameBoard().getArray().length - 2);
+		player.setPosition(GameController.getGameBoard().getArray().length - 1);
 		player.move(2);
 		assertEquals(14, player.getBalance(), "Passing GO without landing didn't pay out");
 	}
