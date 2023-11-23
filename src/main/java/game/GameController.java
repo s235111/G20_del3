@@ -6,11 +6,13 @@ import java.util.Comparator;
 
 public class GameController {
 
-	private static Player[] players;
+	private static Player[] players = new Player[]{};
 
 	private static GameBoard gameBoard = new GameBoard();
 
 	private static Die die = new Die();
+
+	private static boolean hasEnded = false;
 
 
 	public static void setupGame(){
@@ -19,7 +21,7 @@ public class GameController {
 		System.out.println("Let us get started, please input the fist player piece");
 		Scanner sc = new Scanner(System.in);
 		String input = sc.nextLine();
-		players = new Player[] {new Player(input)};
+		addPlayer(new Player(input));
 		System.out.println("Great!! Now we need another player, what piece are they using?");
 		input = sc.nextLine();
 		addPlayer(new Player(input));
@@ -54,25 +56,25 @@ public class GameController {
 
 		if (player.getInJail() == true){
 			if (player.getHasGetOutOfJailFreeCard() == true){
+				System.out.println("You used a get out of jail free card to get out of jail");
 				player.setHasGetOutOfJailFreeCard(false);
 			} else {
 				Bank.withdraw(player, 2);
+				System.out.println("You paid $2 to get out of jail");
 			}
 		}
+
+
+
 		System.out.println("Your turn " + player.toString() + "\n");
-		Scanner sc = new Scanner(System.in);
+		System.out.println("you have a balance of: " + player.getBalance());
 		System.out.println("You are at: " + player.getPosition());
+		Scanner sc = new Scanner(System.in);
 		die.roll();
 		System.out.println("you rolled " + die.getValue());
 		System.out.println("press enter to move");
 		String input;
 		input = sc.nextLine();
-
-		// check for passing go
-		if(player.getPosition() + die.getValue() >= gameBoard.getArray().length){
-			System.out.println("You passed go and are granted $2");
-			Bank.payGo(player);
-		}
 
 		player.move(die.getValue());
 
@@ -88,7 +90,6 @@ public class GameController {
 				System.out.println("you landed on go");
 				break;
 			case "square":
-				System.out.println(playerSquare.toString());
 				if (playerSquare.getOwner() == player){
 					System.out.println("you landed on your own property " + playerSquare.getName());
 				}
@@ -106,9 +107,11 @@ public class GameController {
 				}
 
 				if (playerSquare.getOwner() != null && playerSquare.getOwner() != player){
-					System.out.println("You landed in " + playerSquare.getName() + " and you have to pay rent equal to " + playerSquare.getValue() +  " to " + playerSquare.getOwner().toString());
-					Bank.payPlayer(player, playerSquare.getOwner(), playerSquare.getValue());
-					System.out.println("You now have $" + player.getBalance());
+					System.out.println("You landed in " + playerSquare.getName());
+					Bank.payRent(player, playerSquare);
+					if(GameController.getHasEnded()){
+						System.out.println("You now have $" + player.getBalance());
+					}
 				}
 				break;
 
@@ -139,6 +142,8 @@ public class GameController {
 
 
 	public static void endGameEvaluation(){
+		GameController.setHasEnded(true);
+
 		//Sort the players by balance, least to most
 		Arrays.sort(players, new Comparator<Player>() {
             @Override
@@ -155,14 +160,14 @@ public class GameController {
 
 		//find the winner
 		if (players.length == 2){
-			System.out.println("The winner is" + players[players.length-1]);
+			System.out.println("The winner is: " + players[players.length-1]);
 		}
 
 		if (players.length == 3){
 			if (players[players.length-1].getBalance() == players[players.length-2].getBalance()){
 				System.out.println("We have a tie!!!");
 			} else{
-				System.out.println("The winner is" + players[players.length-1]);
+				System.out.println("The winner is: " + players[players.length-1]);
 			}
 		}
 		if (players.length == 4){
@@ -173,7 +178,7 @@ public class GameController {
 					System.out.println("We have a tie!!!");
 				}
 			} else{
-				System.out.println("The winner is" + players[players.length-1]);
+				System.out.println("The winner is: " + players[players.length-1]);
 			}
 		}
 
@@ -182,13 +187,22 @@ public class GameController {
 
 
 	}
+
+	public static boolean getHasEnded(){
+		return hasEnded;
+	}
+
+	public static void setHasEnded(boolean state){
+		hasEnded = state;
+	}
+
 	public static Player[] getPlayers(){
 		return players;
 	}
 
 	public static void addPlayer(Player newPlayer){
-			players = Arrays.copyOf(players, players.length + 1);
-			players[players.length - 1] = newPlayer;
+		players = Arrays.copyOf(players, players.length + 1);
+		players[players.length - 1] = newPlayer;
 	}
 
 	public static GameBoard getGameBoard(){
@@ -215,16 +229,16 @@ public class GameController {
 
 
 	public static void main(String[] args){
+
 		setupGame();
-		int count = 10;
-		while (count > 0){
+		while (hasEnded == false){
 			for(Player player: players){
+				if(GameController.getHasEnded()){
+					return;
+				}
 				playTurn(player);
 			}
-			count--;
 		}
-		System.out.println(playersToString());
-		endGameEvaluation();
-		System.out.println(playersToString());
+		System.out.println("Thanks for playing");
 	}
 }

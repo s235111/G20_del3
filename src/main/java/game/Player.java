@@ -26,7 +26,12 @@ public class Player {
 	}
 
 	public int move(int amount) {
-		this.position = (this.position + amount) % GameController.getGameBoard().getArray().length;
+		int boardSize = GameController.getGameBoard().getArray().length;
+		if (this.position + amount > boardSize){
+			System.out.println("You passed go and get $2");
+			Bank.payGo(this);
+		}
+		this.position = (this.position + amount) % boardSize;
 		return this.position;
 	}
 
