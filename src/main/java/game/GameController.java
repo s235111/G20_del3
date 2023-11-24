@@ -138,7 +138,7 @@ public class GameController {
 			}
 
 			case "parking" -> {
-				System.out.println("Uou arrived at free parking, nothing more happens");
+				System.out.println("You arrived at free parking, nothing more happens");
 			}
 
 			case "prison" -> {
@@ -152,7 +152,7 @@ public class GameController {
 			}
 
 			default -> {
-				System.out.println("Something went wrong, how didi this happen!!!!");
+				System.out.println("Something went wrong, how did this happen?!!!");
 			}
 		}
 	}
