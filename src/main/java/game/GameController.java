@@ -21,7 +21,7 @@ public class GameController {
 
 	private static ChanceCardDeck deck = new ChanceCardDeck();
 
-	public static void setupGame() {
+	public static void setupPlayers() {
 
 		System.out.println("Welcome to Monopoly Junior!!!");
 		System.out.println("You can play with some or all of the follwoing 4 pieces: Boat, Cat, Car, Dog");
@@ -70,7 +70,6 @@ public class GameController {
 		}
 		System.out.println("The game will now start with the following players:");
 		System.out.println(playersToString());
-		Bank.payGameStart(players);
 	}
 
 	public static void playTurn(Player player) {
@@ -307,7 +306,8 @@ public class GameController {
 
 	public static void main(String[] args) {
 		System.out.println("Wakydoodle");
-		setupGame();
+		setupPlayers();
+		Bank.payGameStart(players);
 		while (!hasEnded) {
 			for (Player player : players) {
 				if (GameController.getHasEnded()) {
