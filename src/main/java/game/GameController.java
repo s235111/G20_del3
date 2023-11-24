@@ -102,11 +102,11 @@ public class GameController {
 	public static void handleSquare(Player player) {
 		Square playerSquare = gameBoard.getSquare(player.getPosition());
 		switch (playerSquare.getType()) {
-			case "start":
+			case "start" -> {
 				System.out.println("you landed on go");
-				break;
+			}
 
-			case "square":
+			case "square" -> {
 				if (playerSquare.getOwner() == player) {
 					System.out.println("you landed on your own property " + playerSquare.getName());
 				}
@@ -131,29 +131,30 @@ public class GameController {
 						System.out.println("You now have $" + player.getBalance());
 					}
 				}
-				break;
+			}
 
-			case "chance":
+			case "chance" -> {
 				System.out.println("You landed on a Chance square, and get to draw a chance card");
 				drawChanceCard(player);
-				break;
+			}
 
-			case "parking":
+			case "parking" -> {
 				System.out.println("you arrived at free parking, nothing more happens");
-				break;
+			}
 
-			case "prison":
+			case "prison" -> {
 				System.out.println("You landed on go to prison, and are taken to jail");
 				player.setPosition(6);
 				player.setInJail(true);
-				break;
+			}
 
-			case "visit":
+			case "visit" -> {
 				System.out.println("You are visiting jail, welcome!");
-				break;
+			}
 
-			default:
+			default -> {
 				System.out.println("Something went wrong, how didi this happen!!!!");
+			}
 		}
 	}
 

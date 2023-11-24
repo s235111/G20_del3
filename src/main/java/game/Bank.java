@@ -55,19 +55,12 @@ public class Bank {
 	}
 
 	public static void payGameStart(Player[] players) {
-		switch (players.length) {
-			case 2:
-				payAll(players, 20);
-				break;
-			case 3:
-				payAll(players, 18);
-				break;
-			case 4:
-				payAll(players, 16);
-				break;
-			default:
-				payAll(players, 10);
-		}
+		payAll(players, switch (players.length) {
+			case 2 -> 20;
+			case 3 -> 18;
+			case 4 -> 16;
+			default -> 10;
+		});
 	}
 
 	private static void payAll(Player[] players, int money) {
