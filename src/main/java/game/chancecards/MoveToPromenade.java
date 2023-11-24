@@ -11,5 +11,6 @@ public class MoveToPromenade implements ChanceCard {
 	@Override
 	public void perform(Player player) {
 		player.setPosition(23);
+		game.GameController.handleSquare(player);
 	}
 }

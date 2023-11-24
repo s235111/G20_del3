@@ -89,7 +89,7 @@ public class GameController {
 		}
 
 		System.out.println("you have a balance of: " + player.getBalance());
-		System.out.println("You are at: " + player.getPosition());
+		System.out.println("You are at: " + (player.getPosition()+1) + " out of 24");
 		Scanner sc = new Scanner(System.in);
 		die.roll();
 		System.out.println("you rolled " + die.getValue());
@@ -122,12 +122,13 @@ public class GameController {
 						playerSquare.setOwner(player);
 
 					} else{
+						System.out.println("You landed on " + playerSquare.getName());
 						System.out.println("You do not have enough money to buy this square, nothing happens");
 					}
 				}
 
 				if (playerSquare.getOwner() != null && playerSquare.getOwner() != player){
-					System.out.println("You landed in " + playerSquare.getName());
+					System.out.println("You landed on " + playerSquare.getName());
 					Bank.payRent(player, playerSquare);
 					if(GameController.getHasEnded() != true){
 						System.out.println("You now have $" + player.getBalance());
