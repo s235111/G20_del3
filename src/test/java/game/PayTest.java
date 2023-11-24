@@ -36,5 +36,6 @@ public class PayTest {
 		GameController.handleSquare(player2);
 		assertSame(player1, square.getOwner(), "Second player got property from first player");
 		assertEquals(10 - square.getValue(), player2.getBalance(), "Second player didn't pay rent");
+		assertEquals(10, player1.getBalance(), "First player didn't receive rent payment");
 	}
 }
