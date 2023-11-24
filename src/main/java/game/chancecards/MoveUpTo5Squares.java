@@ -1,5 +1,6 @@
 package game.chancecards;
 
+import game.GameController;
 import game.Player;
 
 public class MoveUpTo5Squares implements ChanceCard {
@@ -10,6 +11,12 @@ public class MoveUpTo5Squares implements ChanceCard {
 
 	@Override
 	public void perform(Player player) {
+		int numSquares = GameController.getGameBoard().getArray().length;
+		System.out.println("The squares in front of you are:");
+		for (int i = 1; i <= 5; i++) {
+			System.out.println(" - " + GameController.getGameBoard()
+				.getSquare((player.getPosition() + i) % numSquares).toString());
+		}
 		var scanner = new java.util.Scanner(System.in);
 		int input;
 		while (true) {
@@ -25,6 +32,6 @@ public class MoveUpTo5Squares implements ChanceCard {
 			System.out.println("The number has to be in the range 1-5, try again");
 		}
 		player.move(input);
-		game.GameController.handleSquare(player);
+		GameController.handleSquare(player);
 	}
 }

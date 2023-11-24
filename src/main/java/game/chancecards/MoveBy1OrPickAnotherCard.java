@@ -11,6 +11,8 @@ public class MoveBy1OrPickAnotherCard implements ChanceCard {
 
 	@Override
 	public void perform(Player player) {
+		System.out.println("The square in front of you is: " + GameController.getGameBoard()
+			.getSquare((player.getPosition() + 1) % GameController.getGameBoard().getArray().length).toString());
 		var scanner = new java.util.Scanner(System.in);
 		String input;
 		while (true) {
