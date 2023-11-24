@@ -98,6 +98,7 @@ public class GameController {
 				Bank.withdraw(player, 2);
 				System.out.println("You paid $2 to get out of jail");
 			}
+			player.setInJail(false);
 		}
 	}
 
