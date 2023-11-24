@@ -311,7 +311,7 @@ public class GameController {
 		while (!hasEnded) {
 			for (Player player : players) {
 				if (GameController.getHasEnded()) {
-					return;
+					break;
 				}
 				playTurn(player);
 			}
