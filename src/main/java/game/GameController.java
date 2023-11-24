@@ -30,7 +30,7 @@ public class GameController {
 		Scanner sc = new Scanner(System.in);
 		String input;
 
-		while (allPlayersAdded == false) {
+		while (!allPlayersAdded) {
 			if (players.length == 0) {
 				System.out.println("Please choose the first player you have the option to use any aforementioned piece");
 				input = sc.nextLine();
@@ -76,8 +76,8 @@ public class GameController {
 	public static void playTurn(Player player) {
 
 		System.out.println("\n Your turn " + player.toString() + "\n");
-		if (player.getInJail() == true) {
-			if (player.getHasGetOutOfJailFreeCard() == true) {
+		if (player.getInJail()) {
+			if (player.getHasGetOutOfJailFreeCard()) {
 				System.out.println("You used a get out of jail free card to get out of jail");
 				player.setHasGetOutOfJailFreeCard(false);
 			} else {
@@ -127,7 +127,7 @@ public class GameController {
 				if (playerSquare.getOwner() != null && playerSquare.getOwner() != player) {
 					System.out.println("You landed on " + playerSquare.getName());
 					Bank.payRent(player, playerSquare);
-					if (GameController.getHasEnded() != true) {
+					if (!GameController.getHasEnded()) {
 						System.out.println("You now have $" + player.getBalance());
 					}
 				}
@@ -307,7 +307,7 @@ public class GameController {
 	public static void main(String[] args) {
 		System.out.println("Wakydoodle");
 		setupGame();
-		while (hasEnded == false) {
+		while (!hasEnded) {
 			for (Player player : players) {
 				if (GameController.getHasEnded()) {
 					return;
