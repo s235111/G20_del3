@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 public class GetOutOfJailTest {
 	@Test
-	public void testGoingToJail() {
+	public void testGettingOutOfJail() {
 		Player player = new Player("Boat");
 		GameController.addPlayer(player);
 		player.setBalance(10);
