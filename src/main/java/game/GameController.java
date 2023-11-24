@@ -102,7 +102,7 @@ public class GameController {
 	}
 
 
-	private static void handleSquare(Player player){
+	public static void handleSquare(Player player){
 		Square playerSquare = gameBoard.getSquare(player.getPosition());
 			switch (playerSquare.getType()){
 			case "start":

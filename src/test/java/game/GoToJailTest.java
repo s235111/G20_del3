@@ -16,6 +16,7 @@ public class GoToJailTest {
 			"Expected square of index 18 to be a 'Go to jail' square");
 		assertFalse(player.getInJail(), "Didn't expect player to be in jail by default");
 		player.move(18);
+		GameController.handleSquare(player);
 		assertTrue(player.getInJail(), "Landing on 'Go to jail' didn't put player in jail");
 	}
 }
