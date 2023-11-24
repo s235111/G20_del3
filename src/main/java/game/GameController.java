@@ -75,15 +75,7 @@ public class GameController {
 	public static void playTurn(Player player) {
 
 		System.out.println("\nYour turn " + player.toString() + "\n");
-		if (player.getInJail()) {
-			if (player.getHasGetOutOfJailFreeCard()) {
-				System.out.println("You used a get out of jail free card to get out of jail");
-				player.setHasGetOutOfJailFreeCard(false);
-			} else {
-				Bank.withdraw(player, 2);
-				System.out.println("You paid $2 to get out of jail");
-			}
-		}
+		handleJail(player);
 
 		System.out.println("You have a balance of: " + player.getBalance());
 		System.out.println("You are at: " + (player.getPosition() + 1) + " out of 24");
@@ -95,6 +87,18 @@ public class GameController {
 
 		player.move(die.getValue());
 		handleSquare(player);
+	}
+
+	public static void handleJail(Player player) {
+		if (player.getInJail()) {
+			if (player.getHasGetOutOfJailFreeCard()) {
+				System.out.println("You used a get out of jail free card to get out of jail");
+				player.setHasGetOutOfJailFreeCard(false);
+			} else {
+				Bank.withdraw(player, 2);
+				System.out.println("You paid $2 to get out of jail");
+			}
+		}
 	}
 
 	public static void handleSquare(Player player) {
