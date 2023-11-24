@@ -5,7 +5,7 @@ import game.GameController;
 import game.Square;
 import game.Bank;
 
-public class ColorFreeSquare implements ChanceCard{
+public class ColorFreeSquare implements ChanceCard {
 	private String color1;
 	private String color2;
 
@@ -21,11 +21,11 @@ public class ColorFreeSquare implements ChanceCard{
 	@Override
 	public String getDescription() {
 		return "Advance to a " + color1 + (color2 != null ? " or " + color2 : "") + " square."
-				+ "\nIf it's vacant, get it for FREE! Otherwise, PAY rent to the owner.";
+			+ "\nIf it's vacant, get it for FREE! Otherwise, PAY rent to the owner.";
 	}
 
 	@Override
-	public void perform(Player player) throws IllegalArgumentException{
+	public void perform(Player player) throws IllegalArgumentException {
 		int i = player.getPosition();
 		Square square;
 		while (true) {

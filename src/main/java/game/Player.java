@@ -11,7 +11,6 @@ public class Player {
 
 	// Constructor
 	public Player() {
-
 		this.position = 0;
 		this.inJail = false;
 		this.HasGetOutOfJailFreeCard = false;
@@ -27,7 +26,7 @@ public class Player {
 
 	public int move(int amount) {
 		int boardSize = GameController.getGameBoard().getArray().length;
-		if ((this.position + amount) >= boardSize){
+		if ((this.position + amount) >= boardSize) {
 			System.out.println("You passed go and get $2");
 			Bank.payGo(this);
 		}
@@ -43,12 +42,12 @@ public class Player {
 		this.position = pos;
 	}
 
-	public void setPiece(String piece) {
-		this.piece = piece;
-	}
-
 	public String getPiece() {
 		return this.piece;
+	}
+
+	public void setPiece(String piece) {
+		this.piece = piece;
 	}
 
 	public boolean getInJail() {
@@ -75,8 +74,8 @@ public class Player {
 		this.balance = amount;
 	}
 
-	public String toString(){
-		if (this.piece != null){
+	public String toString() {
+		if (this.piece != null) {
 			return this.piece;
 		} else {
 			return "";

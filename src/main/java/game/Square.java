@@ -17,7 +17,7 @@ public class Square {
 	}
 
 	public String toString() {
-		if (this.colour != null){
+		if (this.colour != null) {
 			return this.name + ", " + this.value + ", of type " + this.type + ", with the colour of: " + this.colour;
 		} else {
 			return this.name + ", " + this.value + ", of type " + this.type;
@@ -48,12 +48,12 @@ public class Square {
 		this.type = type;
 	}
 
-	public void setOwner(Player owner) {
-		this.owner = owner;
-	}
-
 	public Player getOwner() {
 		return this.owner;
+	}
+
+	public void setOwner(Player owner) {
+		this.owner = owner;
 	}
 
 	public int getIndex() {
