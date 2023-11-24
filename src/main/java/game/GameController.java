@@ -32,7 +32,7 @@ public class GameController {
 
 		while (!allPlayersAdded) {
 			if (players.length == 0) {
-				System.out.println("Please choose the first player you have the option to use any aforementioned piece");
+				System.out.println("Please choose the first player - you have the option to use any aforementioned piece");
 				input = sc.nextLine();
 				if (pieceIsAvailable(input)) {
 					addPlayer(new Player(input));
@@ -41,7 +41,7 @@ public class GameController {
 				}
 			}
 			if (players.length == 1) {
-				System.out.println("Please choose the second player you have the option to use" + availablePlayersString());
+				System.out.println("Please choose the second player - you have the option to use" + availablePlayersString());
 				input = sc.nextLine();
 				if (pieceIsAvailable(input)) {
 					addPlayer(new Player(input));
@@ -52,7 +52,7 @@ public class GameController {
 				System.out.println(playersToString());
 			}
 
-			System.out.println("If you wish to play type play, otherwise add another player piece the remaining pieces are: " + availablePlayersString());
+			System.out.println("If you wish to play type play, otherwise add another player piece - the remaining pieces are: " + availablePlayersString());
 			input = sc.nextLine();
 			if (input.equals("play")) {
 				allPlayersAdded = true;
@@ -61,7 +61,7 @@ public class GameController {
 			if (pieceIsAvailable(input)) {
 				addPlayer(new Player(input));
 			} else {
-				System.out.println("Please input a valid game piece, remeber it is case sensitive");
+				System.out.println("Please input a valid game piece, remember it is case sensitive");
 			}
 			if (players.length == 4) {
 				allPlayersAdded = true;
@@ -74,7 +74,7 @@ public class GameController {
 
 	public static void playTurn(Player player) {
 
-		System.out.println("\n Your turn " + player.toString() + "\n");
+		System.out.println("\nYour turn " + player.toString() + "\n");
 		if (player.getInJail()) {
 			if (player.getHasGetOutOfJailFreeCard()) {
 				System.out.println("You used a get out of jail free card to get out of jail");
@@ -85,12 +85,12 @@ public class GameController {
 			}
 		}
 
-		System.out.println("you have a balance of: " + player.getBalance());
+		System.out.println("You have a balance of: " + player.getBalance());
 		System.out.println("You are at: " + (player.getPosition() + 1) + " out of 24");
 		Scanner sc = new Scanner(System.in);
 		die.roll();
-		System.out.println("you rolled " + die.getValue());
-		System.out.println("press enter to move");
+		System.out.println("You rolled " + die.getValue());
+		System.out.println("Press enter to move");
 		String input;
 		input = sc.nextLine();
 
@@ -102,12 +102,12 @@ public class GameController {
 		Square playerSquare = gameBoard.getSquare(player.getPosition());
 		switch (playerSquare.getType()) {
 			case "start" -> {
-				System.out.println("you landed on go");
+				System.out.println("You landed on go");
 			}
 
 			case "square" -> {
 				if (playerSquare.getOwner() == player) {
-					System.out.println("you landed on your own property " + playerSquare.getName());
+					System.out.println("You landed on your own property " + playerSquare.getName());
 				}
 
 				if (playerSquare.getOwner() == null) {
@@ -138,7 +138,7 @@ public class GameController {
 			}
 
 			case "parking" -> {
-				System.out.println("you arrived at free parking, nothing more happens");
+				System.out.println("Uou arrived at free parking, nothing more happens");
 			}
 
 			case "prison" -> {
