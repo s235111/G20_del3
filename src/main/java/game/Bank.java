@@ -32,7 +32,7 @@ public class Bank {
 
 		if (owner != null) {
 			if (bothPropertiesOwned(square)) {
-				rent = rent * 2;
+				rent *= 2;
 			}
 			System.out.println("You have to pay $" + rent + " to " + owner);
 			if (Bank.withdraw(player, rent)) {
@@ -79,7 +79,7 @@ public class Bank {
 	}
 
 	private static void sellSquaresForRent(Player player, Square square, int missingRent) {
-		Scanner sc = new Scanner(System.in);
+		Scanner scanner = new Scanner(System.in);
 		while (missingRent > 0 && playerHasPortfolioOf(player, missingRent)) {
 			System.out.println("You need to sell a property for a value of: " + missingRent + " Here are your properties:");
 			Square[] squares = GameController.getGameBoard().getOwnedBy(player);
@@ -87,7 +87,7 @@ public class Bank {
 				System.out.println(i + squares[i].toString());
 			}
 			System.out.println("Please choose the one property at a time to sell by writing the number to the left of the property, and press Enter");
-			int input = sc.nextInt();
+			int input = scanner.nextInt();
 			if (input < squares.length) {
 				Square chosenSquare = squares[input];
 				missingRent -= chosenSquare.getValue();

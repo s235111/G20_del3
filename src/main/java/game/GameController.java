@@ -27,13 +27,13 @@ public class GameController {
 		System.out.println("You can play with some or all of the follwoing 4 pieces: Boat, Cat, Car, Dog");
 
 		boolean allPlayersAdded = false;
-		Scanner sc = new Scanner(System.in);
+		Scanner scanner = new Scanner(System.in);
 		String input;
 
 		while (!allPlayersAdded) {
 			if (players.length == 0) {
 				System.out.println("Please choose the first player - you have the option to use any aforementioned piece");
-				input = sc.nextLine();
+				input = scanner.nextLine();
 				if (pieceIsAvailable(input)) {
 					addPlayer(new Player(input));
 				} else {
@@ -42,7 +42,7 @@ public class GameController {
 			}
 			if (players.length == 1) {
 				System.out.println("Please choose the second player - you have the option to use" + availablePlayersString());
-				input = sc.nextLine();
+				input = scanner.nextLine();
 				if (pieceIsAvailable(input)) {
 					addPlayer(new Player(input));
 				} else {
@@ -53,7 +53,7 @@ public class GameController {
 			}
 
 			System.out.println("If you wish to play type play, otherwise add another player piece - the remaining pieces are: " + availablePlayersString());
-			input = sc.nextLine();
+			input = scanner.nextLine();
 			if (input.equals("play")) {
 				allPlayersAdded = true;
 				break;
@@ -87,12 +87,11 @@ public class GameController {
 
 		System.out.println("You have a balance of: " + player.getBalance());
 		System.out.println("You are at: " + (player.getPosition() + 1) + " out of 24");
-		Scanner sc = new Scanner(System.in);
+		Scanner scanner = new Scanner(System.in);
 		die.roll();
 		System.out.println("You rolled " + die.getValue());
 		System.out.println("Press enter to move");
-		String input;
-		input = sc.nextLine();
+		scanner.nextLine();
 
 		player.move(die.getValue());
 		handleSquare(player);

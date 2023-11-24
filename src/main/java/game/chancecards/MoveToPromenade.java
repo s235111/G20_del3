@@ -1,5 +1,6 @@
 package game.chancecards;
 
+import game.GameController;
 import game.Player;
 
 public class MoveToPromenade implements ChanceCard {
@@ -11,6 +12,6 @@ public class MoveToPromenade implements ChanceCard {
 	@Override
 	public void perform(Player player) {
 		player.setPosition(23);
-		game.GameController.handleSquare(player);
+		GameController.handleSquare(player);
 	}
 }
