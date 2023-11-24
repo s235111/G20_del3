@@ -1,32 +1,84 @@
 package game;
 
-class Player {
+public class Player {
 
-	private String name;
-	private Account account;
+	private boolean inJail;
+	private int position;
+	// Should this be a seperate method or part of constructor??
+	private String piece;
+	private boolean HasGetOutOfJailFreeCard;
+	private int balance;
 
 	// Constructor
 	public Player() {
-		this.name = "";
-		this.account = new Account();
+		this.position = 0;
+		this.inJail = false;
+		this.HasGetOutOfJailFreeCard = false;
 	}
 
 	// Constructor with name overload
-	public Player(String givenName) {
-		this.name = givenName;
-		this.account = new Account();
+	public Player(String piece) {
+		this.inJail = false;
+		this.position = 0;
+		this.piece = piece;
+		this.HasGetOutOfJailFreeCard = false;
 	}
 
-	public String getName() {
-		return this.name;
+	public int move(int amount) {
+		int boardSize = GameController.getGameBoard().getArray().length;
+		if ((this.position + amount) >= boardSize) {
+			System.out.println("You passed go and get $2");
+			Bank.payGo(this);
+		}
+		this.position = (this.position + amount) % boardSize;
+		return this.position;
 	}
 
-	public void setName(String nameToSet) {
-		this.name = nameToSet;
+	public int getPosition() {
+		return this.position;
 	}
 
-	public Account getAccount() {
-		return this.account;
+	public void setPosition(int pos) {
+		this.position = pos;
 	}
 
+	public String getPiece() {
+		return this.piece;
+	}
+
+	public void setPiece(String piece) {
+		this.piece = piece;
+	}
+
+	public boolean getInJail() {
+		return this.inJail;
+	}
+
+	public void setInJail(boolean inJail) {
+		this.inJail = inJail;
+	}
+
+	public boolean getHasGetOutOfJailFreeCard() {
+		return this.HasGetOutOfJailFreeCard;
+	}
+
+	public void setHasGetOutOfJailFreeCard(boolean HasGetOutOfJailFreeCard) {
+		this.HasGetOutOfJailFreeCard = HasGetOutOfJailFreeCard;
+	}
+
+	public int getBalance() {
+		return this.balance;
+	}
+
+	public void setBalance(int amount) {
+		this.balance = amount;
+	}
+
+	public String toString() {
+		if (this.piece != null) {
+			return this.piece;
+		} else {
+			return "";
+		}
+	}
 }

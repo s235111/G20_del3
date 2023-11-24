@@ -2,43 +2,73 @@ package game;
 
 public class Square {
 
-	String nameToken;
-	int moneyValue;
-	boolean extraTurn;
+	private String name;
+	private int value;
+	private String colour;
+	private int index;
+	private Player owner;
+	private String type;
 
-	public Square() {
-
+	public Square(String name, int price, String type, String colour) {
+		this.name = name;
+		this.value = price;
+		this.type = type;
+		this.colour = colour;
 	}
 
-	public Square(String nameToken, int moneyValue, boolean extraTurn) {
-		this.nameToken = nameToken;
-		this.moneyValue = moneyValue;
-		this.extraTurn = extraTurn;
+	public String toString() {
+		if (this.colour != null) {
+			return this.name + ", " + this.value + ", of type " + this.type + ", with the colour of: " + this.colour;
+		} else {
+			return this.name + ", " + this.value + ", of type " + this.type;
+		}
 	}
 
-	public String getNameToken() {
-		return this.nameToken;
+	public String getName() {
+		return this.name;
 	}
 
-	public void setNameToken(String newName) {
-		this.nameToken = newName;
+	public void setName(String newName) {
+		this.name = newName;
 	}
 
-	public int getMoneyValue() {
-		return this.moneyValue;
+	public int getValue() {
+		return this.value;
 	}
 
-	public void setMoneyValue(int newValue) {
-		this.moneyValue = newValue;
+	public void setValue(int newValue) {
+		this.value = newValue;
 	}
 
-	public boolean getExtraTurn() {
-		return this.extraTurn;
+	public String getType() {
+		return this.type;
 	}
 
-	public void setExtraTurn(boolean extraTurn) {
-		this.extraTurn = extraTurn;
-
+	public void setType(String type) {
+		this.type = type;
 	}
 
+	public Player getOwner() {
+		return this.owner;
+	}
+
+	public void setOwner(Player owner) {
+		this.owner = owner;
+	}
+
+	public int getIndex() {
+		return this.index;
+	}
+
+	public void setIndex(int index) {
+		this.index = index;
+	}
+
+	public String getColour() {
+		return this.colour;
+	}
+
+	public void setColour(String colour) {
+		this.colour = colour;
+	}
 }
